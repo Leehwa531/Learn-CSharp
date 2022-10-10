@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace practice_chapter3_9_6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int i; // 반복문에 쓸 정수
+            int M; // ∑연산 결과값 변수
+            int N; // ∏연산 결과값 변수
+
+            M = 0;
+            for (i = 1; i <= 100; i++)
+                M += 2 * i;
+            N = 1;
+            for (i = 1; i <= 10; i++)
+                N *= i;
+
+            //결과값 출력
+            Console.WriteLine("result = {0} + {1} = {2}", M, N, M + N);
+        }
+    }
+}
