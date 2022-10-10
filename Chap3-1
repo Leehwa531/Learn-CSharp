@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace practice_chapter3_9_5
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int G; // 최대공약수
+            int L; // 최소공배수
+            int MIN;
+            int r;
+
+            //두 수를 입력받기
+            Console.WriteLine("※두 수를 입력받아 최대 공약수와 최소 공배수를 구하는 프로그램");
+
+
+            //(이쁘게 할려고) 한칸 띄우기
+            Console.WriteLine();
+
+            //큰 수와 작은 수로 구분하기
+            if (int.Parse(args[0]) > int.Parse(args[1])) { G = int.Parse(args[0]); MIN = int.Parse(args[1]); }
+            else { G = int.Parse(args[1]); MIN = int.Parse(args[0]); }
+
+            //최대공약수 구하기
+            while (true)
+            {
+                r = G % MIN;
+                G = MIN;
+                MIN = r;
+                if (r == 0) { break; }
+            }
+
+            //최소공배수 구하기
+            L = int.Parse(args[0]) * int.Parse(args[1]) / G;
+
+            //결과값 출력
+            Console.WriteLine("최대공약수 : " + G);
+            Console.WriteLine("최소공배수 : " + L);
+        }
+    }
+}
