@@ -1,0 +1,222 @@
+namespace Practice5_9
+{
+    //연습문제 5.9
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    interface IOperation
+    {
+        void Insert(string str);
+        string Delete();
+        bool Search(string str);
+        string GetCurrentElt();
+        int NumOfElements();
+    }
+
+    //스택은 후입선출구조(FILO)
+    class Stack : IOperation
+    {
+        int top = -1;           //스택 없을 때 -1. 즉, empty 공백  상태
+        public int size = 20;          //스택 사이즈, 생성자에 사이즈값이 안들어왔다면 20사이즈로 지정.
+        String[] stack;         //"20183049","동의대" 이런게 들어와도 스택으로 넣을수 있게 스트링 배열형식으로 선언.
+
+        public Stack()
+        {
+            stack = new string[size];       //20사이즈짜리 stack String 배열 생성
+        }
+        public Stack(int num)
+        {
+            size = num;
+            stack = new string[size];       //사용자가 입력한 값만큼 stack 크기 설정
+        }
+        public void Insert(string str)      //매개변수로 받은 str을 스택에 푸시
+        {
+            if (size <= top)
+                Console.WriteLine("스택이 다 찼습니다.");
+            else
+            {
+                stack[++top] = str;
+                Console.WriteLine("stack[{0}] : {1} ", top, stack[top]);
+            }
+        }
+
+        public string Delete()
+        {
+            if (top == -1)          //비어있는지 검사
+            {
+                Console.WriteLine("스택이 비어 있습니다.");
+                return null;
+            }
+            else
+            {
+                Console.WriteLine("Delete : {0}", stack[top]);
+                return stack[top--];        //stack[top]의 값을 반환한 뒤, top -1 해준다
+            }
+        }
+
+        public bool Search(string str)      //스택에서 주어진 원소의 존재여부를 반환
+        {
+            if (top == -1)
+            {
+                Console.WriteLine("스택이 비어 있습니다.");
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i <= top; i++)
+                {
+                    if (stack[i].Equals(str)) return true;
+                }
+                return false;
+            }
+        }
+
+        public string GetCurrentElt()       //현재 스택 탑에 있는 원소를 반환
+        {
+            if (top == -1)
+            {
+                Console.WriteLine("스택이 비어 있습니다.");
+                return null;
+            }
+            else
+            {
+                Console.WriteLine("GetCurrnetElt 실행 : {0}", stack[top]);
+                return stack[top];          //탑에 있는 원소 반환
+            }
+        }
+        public int NumOfElements()
+        {
+            if (top == -1) return 0;        //비어있을 때 개수는 0개이므로 0 반환
+            else
+            {
+                Console.WriteLine("원소개수 : {0}", top + 1);
+                return top + 1;     //원소의 개수는 stack[0]을 포함하기에 top + 1
+            }
+        }
+    }
+
+
+    //큐는 선입선출구조(FIFO). rear에 삽입, 출력시 front값 상승
+    class Queue : IOperation
+    {
+        int front = 0;          //큐에서 초기값은 front,rear 모두 0.
+        int rear = 0;           //큐에서 초기값은 front,rear 모두 0.
+        public int size = 20;          //큐 사이즈, 생성자에 사이즈값이 안들어왔다면 20사이즈로 지정.
+        string[] queue;         //"20183049","동의대" 이런게 들어와도 스택으로 넣을수 있게 스트링 배열형식으로 선언.
+
+        public Queue()
+        {
+            queue = new string[size];   //20사이즈짜리 queue String 배열 생성
+        }
+
+        public Queue(int num)
+        {
+            size = num;
+            queue = new string[size];  //사용자가 입력한 값만큼 queue 크기 설정
+        }
+
+        public void Insert(string str)
+        {
+            if (rear < size)
+            {
+                queue[rear++] = str;    //매개변수로 받은 str을 rear에 삽입
+                Console.WriteLine("queue : {0} ", str);
+            }
+            else
+            {
+                Console.WriteLine("큐가 다 찼습니다.");     //(rear >= size)이면 큐에 더이상 삽입 불가능
+            }
+        }
+
+        public string Delete()
+        {
+            if (rear == front)
+            {
+                Console.WriteLine("큐가 비어 있습니다.");
+                return null;
+            }
+            else
+            {
+                Console.WriteLine("Delete : {0}", queue[front]);
+                return queue[front++];     //FIFO이기에 front에 있는 값이 반환. 후에 front +1
+            }
+        }
+
+        public bool Search(string str)
+        {
+            if (rear == front)      //rear와 front값이 같을 시에 공백 상태
+            {
+                Console.WriteLine("큐가 비어 있습니다.");
+                return false;
+            }
+            else
+            {
+                for (int i = front; i < rear; i++)
+                {
+                    if (queue[i].Equals(str)) return true;      //front부터 rear까지 돌리면서 입력한 값과 같은 값이 있는지 검사
+                }
+                return false;
+            }
+        }
+
+        public string GetCurrentElt()
+        {
+            if (rear == front) return null;     //rear와 front값이 같을 시에 공백 상태
+            else
+            {
+                Console.WriteLine("GetCurrnetElt 실행 : {0}", queue[front]);
+                return queue[front];       //Delete()가 CTRL + X라면 GetCurrentElt()는 CTRL + C.
+            }
+        }
+
+        public int NumOfElements()
+        {
+            Console.WriteLine("원소개수 : {0}", rear - front);
+            return rear - front;    //front == 0, rear가 9일시, 9개 존재!
+        }
+    }
+    class Test
+    {
+        static void Main(string[] args)
+        {
+
+            //Stack Test
+            Console.WriteLine("<Stack Test>");
+            Stack stack = new Stack();
+            Console.WriteLine("만든 스택 사이즈 : {0}", stack.size);      //stack 사이즈 20인 것을 확인
+            stack.Insert("스택과제완료");
+            stack.Insert("20183049");
+            stack.Insert("박정훈");
+            stack.Insert("동의대");
+            stack.NumOfElements();
+            Console.WriteLine("박정훈이 있는지 확인 : {0}", stack.Search("박정훈"));
+            stack.GetCurrentElt();
+            stack.Delete();
+            stack.Delete();
+            stack.Delete();
+            stack.Delete();
+            stack.Delete();     //스택을 모두 꺼냈기 때문에 empty
+
+
+            //Queue Test
+            Console.WriteLine("\n<Queue Test>");
+            Queue queue = new Queue();
+            Console.WriteLine("만든 스택 사이즈 : {0}", queue.size);      //stack 사이즈 20인 것을 확인
+            queue.Insert("20221023");
+            queue.Insert("다음주는");
+            queue.Insert("시험");
+            queue.Insert("큐과제완료");
+            queue.NumOfElements();
+            Console.WriteLine("박정훈이 있는지 확인 : {0}", queue.Search("박정훈"));
+            queue.GetCurrentElt();
+            queue.Delete();
+            queue.Delete();
+            queue.Delete();
+            queue.Delete();
+            queue.Delete();     //큐를 모두 꺼냈기 때문에 empty
+        }
+    }
+}
