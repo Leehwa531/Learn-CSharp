@@ -1,5 +1,6 @@
 namespace Practice5_9
 {
+
     //연습문제 5.9
     using System;
     using System.Collections.Generic;
