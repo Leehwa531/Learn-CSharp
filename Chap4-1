@@ -18,7 +18,6 @@ namespace practice_chapter3_9_5
             //두 수를 입력받기
             Console.WriteLine("※두 수를 입력받아 최대 공약수와 최소 공배수를 구하는 프로그램");
 
-
             //(이쁘게 할려고) 한칸 띄우기
             Console.WriteLine();
 
