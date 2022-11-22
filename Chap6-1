@@ -44,3 +44,4 @@ public class ExerciseCh6_10_1
  Console.WriteLine(gInteger.getValue());
  }
 }
+
