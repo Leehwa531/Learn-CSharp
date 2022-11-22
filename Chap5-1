@@ -46,7 +46,8 @@ namespace practice5_7
             return f.degree;
         }
     }
-
+    
+    
     class test
     {
         public static void main()
