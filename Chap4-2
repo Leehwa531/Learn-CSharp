@@ -20,7 +20,7 @@ namespace practice_chapter3_9_6
             N = 1;
             for (i = 1; i <= 10; i++)
                 N *= i;
-
+                
             //결과값 출력
             Console.WriteLine("result = {0} + {1} = {2}", M, N, M + N);
         }
