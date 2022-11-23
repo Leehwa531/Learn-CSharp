@@ -16,7 +16,7 @@ namespace practice_chapter3_9_10
             int price; //제품의 가격 변수
             int sum = 0; //동전개수의 합
             
-            while(true)
+            while(true) 
             {
                 Console.Write("물건의 가격을 입력해 주세요 : ");
                 price = int.Parse(Console.ReadLine());
