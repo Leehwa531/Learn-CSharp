@@ -20,7 +20,7 @@ namespace practice_chapter3_9_5
 
             //(이쁘게 할려고) 한칸 띄우기
             Console.WriteLine();
-
+ 
             //큰 수와 작은 수로 구분하기
             if (int.Parse(args[0]) > int.Parse(args[1])) { G = int.Parse(args[0]); MIN = int.Parse(args[1]); }
             else { G = int.Parse(args[1]); MIN = int.Parse(args[0]); }
