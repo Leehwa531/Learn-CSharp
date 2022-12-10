@@ -14,9 +14,9 @@ namespace practice_chapter3_9_10
             int[] Exchange = new int[6]; // 동전금액의 개수를 넣을 변수
             int thousand = 1000; //초기값 1000이자 거스름돈이 될 변수
             int price; //제품의 가격 변수
-            int sum = 0; //동전개수의 합
-              
-            while(true) 
+            int  sum = 0; //동전개수의 합
+               
+            whiletrue) 
             {
                 Console.Write("물건의 가격을 입력해 주세요 : ");
                 price = int.Parse(Console.ReadLine());
